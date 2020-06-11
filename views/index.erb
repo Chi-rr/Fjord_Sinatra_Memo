@@ -1,0 +1,19 @@
+<form class="form-inline offset-md-3">
+  <div class="form-group col-md-6">
+    <h1>Memo</h1>
+  </div>
+  <div class="form-group col-md-6">
+    <a class="btn btn-outline-info" href="/new" role="button">メモ追加</a>
+  </div>
+</form>
+<div class="form-row">
+  <div class="form-group col-md-6 offset-md-3">
+  <ul class="ml-5">
+    <% @memos_link.each do |memo| %>
+      <li class="mt-4">
+        <a href="/<%= memo[0] %>"><%= memo[1] %><br>
+      </li>
+    <% end %>
+  </ul>
+  </div>
+</div>

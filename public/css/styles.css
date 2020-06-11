@@ -1,0 +1,7 @@
+.selector-for-some-widget {
+    box-sizing: content-box;
+  }
+
+.container {
+  margin: 50px auto;
+}

@@ -1,0 +1,31 @@
+<form class="form-inline offset-md-3">
+    <div class="form-group col-md-6">
+      <h1>Memo</h1>
+    </div>
+    <div class="form-group col-md-6">
+      <a class="btn btn-outline-info" href="/" role="button">一覧に戻る</a>
+    </div>
+</form>
+<div class="form-group row justify-content-center">
+  <form action="/<%= @memo[0] %>" method="GET">
+    <div class="my-5">
+      <label for="title">タイトル：</label><br>
+      <%= @memo[1] %>
+    </div>
+    <div class="my-5">
+      <label for="content">内容：</label><br>
+      <%= @content %>
+    </div>
+  </form>
+</div>
+<div class="form-group row justify-content-center">
+  <div class="col-auto">
+    <a href="/<%= @memo[0]%>/edit" class="btn btn-outline-info form-control"  role="button">編集</a>
+  </div>
+  <div class="col-auto">
+    <form action="/<%= @memo[0] %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <button class="btn btn-outline-info form-control" type="submit">削除</button>
+    </form>
+  </div>
+</div>
