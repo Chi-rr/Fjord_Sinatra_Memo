@@ -2,12 +2,11 @@
 
 require "sinatra"
 require "sinatra/reloader"
-require "csv"
 require_relative "memo"
 
 # メモの一覧表示
 get "/" do
-  @memos_link = Memo.new.index_memos
+  @memos_link = Memo.index
   erb :index
 end
 
@@ -24,14 +23,14 @@ end
 
 # パスの受け取り/メモの詳細表示
 get "/:id" do
-  @memo = Memo.new.find_memo(params)
+  @memo = Memo.find(params)
   @content = @memo[2].gsub(/\r\n/, "<br>")
   erb :show
 end
 
 # メモの編集フォーム
 get "/:id/edit" do
-  @memo = Memo.new.find_memo(params)
+  @memo = Memo.find(params)
   erb :edit
 end
 
