@@ -11,25 +11,25 @@ class Database
 
   def create_row(params)
     @id = select_id
-    @conn.exec(
+    @conn.exec_params(
       "INSERT INTO memo VALUES ($1, $2, $3)",
-      [@id, "#{params[:memo_name]}", "#{params[:memo_content]}"]
+      [@id, params[:memo_name], params[:memo_content]]
     )
   end
 
   def delete_row(params)
-    @conn.exec("DELETE FROM memo WHERE id= #{params[:id]}")
+    @conn.exec_params("DELETE FROM memo WHERE id= $1", [params[:id]])
   end
 
   def update_row(params)
-    @conn.exec(
+    @conn.exec_params(
       "INSERT INTO memo VALUES ($1, $2, $3)",
-      ["#{params[:id]}", "#{params[:memo_name]}", "#{params[:memo_content]}"]
+      [params[:id], params[:memo_name], params[:memo_content]]
     )
   end
 
   def row(params)
-    result = @conn.exec("SELECT * FROM memo WHERE id= #{params[:id]}")
+    result = @conn.exec_params("SELECT * FROM memo WHERE id= $1", [params[:id]])
     result.each do |tuple|
       @row = [tuple["id"], tuple["memo_name"], tuple["memo_content"]]
     end
