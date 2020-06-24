@@ -5,21 +5,21 @@ require "sinatra/reloader"
 require_relative "db"
 
 class Memo
-  def create(params)
-    Database.new.create_row(params)
+  def create(memo_name, memo_content)
+    Database.new.create_row(memo_name, memo_content)
   end
 
-  def delete(params)
-    Database.new.delete_row(params)
+  def delete(id)
+    Database.new.delete_row(id)
   end
 
   def update(params)
-    delete(params)
+    delete(params[:id])
     Database.new.update_row(params)
   end
 
-  def self.find(params)
-    Database.new.row(params)
+  def self.find(id)
+    Database.new.row(id)
   end
 
   def self.index

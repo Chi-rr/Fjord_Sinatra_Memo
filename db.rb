@@ -9,16 +9,16 @@ class Database
     @conn = PG.connect(dbname: "sinatra_memo")
   end
 
-  def create_row(params)
+  def create_row(memo_name, memo_content)
     @id = select_id
     @conn.exec_params(
       "INSERT INTO memo VALUES ($1, $2, $3)",
-      [@id, params[:memo_name], params[:memo_content]]
+      [@id, memo_name, memo_content]
     )
   end
 
-  def delete_row(params)
-    @conn.exec_params("DELETE FROM memo WHERE id= $1", [params[:id]])
+  def delete_row(id)
+    @conn.exec_params("DELETE FROM memo WHERE id= $1", [id])
   end
 
   def update_row(params)
@@ -28,8 +28,8 @@ class Database
     )
   end
 
-  def row(params)
-    result = @conn.exec_params("SELECT * FROM memo WHERE id= $1", [params[:id]])
+  def row(id)
+    result = @conn.exec_params("SELECT * FROM memo WHERE id= $1", [id])
     result.each do |tuple|
       @row = [tuple["id"], tuple["memo_name"], tuple["memo_content"]]
     end
