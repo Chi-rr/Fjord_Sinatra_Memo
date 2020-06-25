@@ -11,7 +11,7 @@
   <ul class="ml-5">
     <% @memos_link.each do |memo| %>
       <li class="mt-4">
-        <a href="/<%= memo[0] %>"><%= memo[1] %><br>
+        <a href="/<%= memo["id"] %>"><%= memo["memo_name"] %><br>
       </li>
     <% end %>
   </ul>

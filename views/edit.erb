@@ -7,22 +7,24 @@
     </div>
 </form>
 <div>
-  <form action="/<%= @memo[0] %>" method="POST">
-    <div class="form-row">
-      <div class="form-group col-md-6 offset-md-3">
-        <label for="text">タイトル</label>
-        <input type="text" name="memo_name" value="<%="#{@memo[1]}"%>" class="form-control">        
+  <% @memo.each do |memo| %>
+    <form action="/<%= memo["id"] %>" method="POST">
+      <div class="form-row">
+        <div class="form-group col-md-6 offset-md-3">
+          <label for="text">タイトル</label>
+          <input type="text" name="memo_name" value="<%="#{memo["memo_name"]}"%>" class="form-control">        
+        </div>
       </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6 offset-md-3">
-        <label for="textarea">内容</label>
-        <textarea name="memo_content" rows= "15" class="form-control"><%= @memo[2] %></textarea>
+      <div class="form-row">
+        <div class="form-group col-md-6 offset-md-3">
+          <label for="textarea">内容</label>
+          <textarea name="memo_content" rows= "15" class="form-control"><%= memo["memo_content"] %></textarea>
+        </div>
       </div>
-    </div>
-    <div>
-      <input type="hidden" name="_method" value="PATCH">
-      <button class="btn btn-outline-info text-center mx-auto d-block" type="submit">更新</button>
-    </div>
-  </form>
+      <div>
+        <input type="hidden" name="_method" value="PATCH">
+        <button class="btn btn-outline-info text-center mx-auto d-block" type="submit">更新</button>
+      </div>
+    </form>
+  <% end %>
 </div>

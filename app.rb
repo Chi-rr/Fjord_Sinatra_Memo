@@ -24,7 +24,6 @@ end
 # パスの受け取り/メモの詳細表示
 get "/:id" do
   @memo = Memo.find(params[:id])
-  @content = @memo[2].gsub(/\r\n/, "<br>")
   erb :show
 end
 

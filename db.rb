@@ -29,25 +29,17 @@ class Database
   end
 
   def row(id)
-    result = @conn.exec_params("SELECT * FROM memo WHERE id= $1", [id])
-    result.each do |tuple|
-      @row = [tuple["id"], tuple["memo_name"], tuple["memo_content"]]
-    end
-    @row
+    @conn.exec_params("SELECT * FROM memo WHERE id= $1", [id])
   end
 
   def rows
-    result = @conn.exec("SELECT * FROM memo")
-    @rows = []
-    result.each { |tuple| @rows << [tuple["id"], tuple["memo_name"]] }
-    @rows
+    @conn.exec("SELECT * FROM memo")
   end
 
   private
     def select_id
       result = @conn.exec("SELECT id FROM memo")
-      ids = []
-      result.each { |tuple| ids << tuple["id"] }
+      ids = result.column_values(0).map(&:to_i)
       ids.count > 0 ? ids.max.next : 1
     end
 end
