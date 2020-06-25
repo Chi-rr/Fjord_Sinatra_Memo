@@ -36,7 +36,9 @@ end
 
 # メモの修正投稿
 patch "/:id" do
-  Memo.new.update(params)
+  Memo.new.update(
+    params[:id], params[:memo_name], params[:memo_content]
+  )
   redirect to("/")
 end
 

@@ -21,10 +21,10 @@ class Database
     @conn.exec_params("DELETE FROM memo WHERE id= $1", [id])
   end
 
-  def update_row(params)
+  def update_row(id, memo_name, memo_content)
     @conn.exec_params(
       "INSERT INTO memo VALUES ($1, $2, $3)",
-      [params[:id], params[:memo_name], params[:memo_content]]
+      [id, memo_name, memo_content]
     )
   end
 

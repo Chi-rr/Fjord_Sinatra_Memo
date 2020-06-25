@@ -13,9 +13,9 @@ class Memo
     Database.new.delete_row(id)
   end
 
-  def update(params)
-    delete(params[:id])
-    Database.new.update_row(params)
+  def update(id, memo_name, memo_content)
+    delete(id)
+    Database.new.update_row(id, memo_name, memo_content)
   end
 
   def self.find(id)
